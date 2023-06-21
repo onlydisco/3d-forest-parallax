@@ -1,1 +1,1 @@
-# 3d-forest-parallax
+forest-parallax

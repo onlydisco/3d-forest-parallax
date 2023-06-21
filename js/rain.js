@@ -1,4 +1,4 @@
-let canvas = document.getElementsByClassName("rain")[0];
+let canvas = document.querySelector(".rain");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -19,7 +19,7 @@ function RainDrops(x, y, endy, velocity, opacity) {
     c.beginPath();
     c.moveTo(this.x, this.y);
     c.lineTo(this.x, this.y - this.endy);
-    c.lineWidth = 1;
+    c.lineWidth = 2;
     c.strokeStyle = "rgba(255, 255, 255, " + this.opacity + ")";
     c.stroke();
   };
@@ -35,12 +35,13 @@ function RainDrops(x, y, endy, velocity, opacity) {
   };
 }
 
+const rainPower = 500;
 let rainArray = [];
 
-for (let i = 0; i < 140; i++) {
+for (let i = 0; i < rainPower; i++) {
   let rainXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
   let rainYLocation = Math.random() * -500;
-  let randomRainHeight = randomNum(10, 2);
+  let randomRainHeight = randomNum(8, 2);
   let randomSpeed = randomNum(20, 0.2);
   let randomOpacity = Math.random() * 0.55;
   rainArray.push(
