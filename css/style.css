@@ -85,33 +85,6 @@ body {
   display: block;
 }
 
-.hero__description {
-  text-transform: none;
-  font-family: merriweather-italic-3d;
-  letter-spacing: normal;
-  font-size: calc(var(--index) * 0.9);
-  line-height: 3;
-}
-
-.button {
-  padding: calc(var(--index) * 0.7) calc(var(--index) * 1.25);
-  border: 3px solid rgba(255, 255, 255, 0.4);
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: calc(var(--index) * 0.7);
-  letter-spacing: 0.05vw;
-  color: white;
-  background-color: transparent;
-  border-radius: 10em;
-  outline: 0;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 .layer-4,
 .layer-5,
 .layer-6 {
