@@ -1,4 +1,4 @@
-# 3d forrest with parallax effect
+# 3d forest with parallax effect
 
 Made just for fun.
 
