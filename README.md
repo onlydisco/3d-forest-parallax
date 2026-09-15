@@ -5,7 +5,9 @@
 </p>
 
 <p align="center">
-  <a href="https://3d-forest-parallax.vercel.app/">Live Demo</a>
+  <b>Live Demos:</b>
+  <a href="https://3d-forest-parallax.vercel.app/">Vercel</a> ·
+  <a href="https://onlydisco.github.io/3d-forest-parallax/">GitHub Pages</a>
 </p>
 
 <p align="center">
