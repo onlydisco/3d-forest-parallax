@@ -1,67 +1,62 @@
-let canvas = document.querySelector(".rain");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const canvas = document.querySelector(".rain");
+if (!canvas) throw new Error("Canvas element with class 'rain' not found");
 
-let c = canvas.getContext("2d");
+const c = canvas.getContext("2d");
 
-function randomNum(max, min) {
-  return Math.floor(Math.random() * max) + min;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function randomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RainDrops(x, y, endy, velocity, opacity) {
-  this.x = x;
-  this.y = y;
-  this.endy = endy;
-  this.velocity = velocity;
-  this.opacity = opacity;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  this.draw = function () {
-    c.beginPath();
-    c.moveTo(this.x, this.y);
-    c.lineTo(this.x, this.y - this.endy);
-    c.lineWidth = 2;
-    c.strokeStyle = "rgba(255, 255, 255, " + this.opacity + ")";
-    c.stroke();
-  };
-
-  this.update = function () {
-    let rainEnd = window.innerHeight + 100;
-    if (this.y >= rainEnd) {
-      this.y = this.endy - 100;
-    } else {
-      this.y = this.y + this.velocity;
-    }
-    this.draw();
-  };
-}
-
-const rainPower = 500;
-let rainArray = [];
+const rainPower = prefersReducedMotion ? 0 : 500;
+const rainArray = [];
 
 for (let i = 0; i < rainPower; i++) {
-  let rainXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
-  let rainYLocation = Math.random() * -500;
-  let randomRainHeight = randomNum(8, 2);
-  let randomSpeed = randomNum(20, 0.2);
-  let randomOpacity = Math.random() * 0.55;
-  rainArray.push(
-    new RainDrops(
-      rainXLocation,
-      rainYLocation,
-      randomRainHeight,
-      randomSpeed,
-      randomOpacity
-    )
-  );
+  const rainXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
+  const rainYLocation = Math.random() * -500;
+  const randomRainHeight = randomNum(2, 8);
+  const randomSpeed = randomNum(0.2, 20);
+  const randomOpacity = Math.random() * 0.55;
+  rainArray.push({
+    x: rainXLocation,
+    y: rainYLocation,
+    endy: randomRainHeight,
+    velocity: randomSpeed,
+    opacity: randomOpacity,
+  });
 }
 
 function animateRain() {
   requestAnimationFrame(animateRain);
-  c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  c.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < rainArray.length; i++) {
-    rainArray[i].update();
+    const drop = rainArray[i];
+    const rainEnd = canvas.height + 100;
+
+    if (drop.y >= rainEnd) {
+      drop.y = drop.endy - 100;
+    } else {
+      drop.y += drop.velocity;
+    }
+
+    c.beginPath();
+    c.moveTo(drop.x, drop.y);
+    c.lineTo(drop.x, drop.y - drop.endy);
+    c.lineWidth = 2;
+    c.strokeStyle = "rgba(255, 255, 255, " + drop.opacity + ")";
+    c.stroke();
   }
 }
 
-animateRain();
+if (rainArray.length > 0) {
+  animateRain();
+}

@@ -2,16 +2,11 @@
   font-family: kamerik-3d;
   src: url(../fonts/kamerik205-heavy.woff2);
   font-weight: 900;
-}
-
-@font-face {
-  font-family: merriweather-italic-3d;
-  src: url(../fonts/merriweather-regular-italic.woff2);
+  font-display: swap;
 }
 
 :root {
   --index: calc(1vw + 1vh);
-  --transition: 1.5s cubic-bezier(0.05, 0.5, 0, 1);
 }
 
 * {
@@ -35,9 +30,8 @@ body {
   height: 100vh;
   min-height: 500px;
   transform-style: preserve-3d;
-  transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+  transform: rotateX(var(--move-y, 0deg)) rotateY(var(--move-x, 0deg));
   will-change: transform;
-  transition: transform var(--transition);
 }
 
 .layers__item {
@@ -47,13 +41,17 @@ body {
   align-items: center;
   justify-content: center;
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .layer-1 {
+  background-image: url(../img/layer-1.jpg);
   transform: translateZ(-50px) scale(1.1);
 }
 
 .layer-2 {
+  background-image: url(../img/layer-2.png);
   transform: translateZ(80px) scale(1);
 }
 
@@ -66,10 +64,12 @@ body {
 }
 
 .layer-5 {
+  background-image: url(../img/layer-5.png);
   transform: translateZ(300px) scale(0.9);
 }
 
 .layer-6 {
+  background-image: url(../img/layer-6.png);
   transform: translateZ(380px) scale(0.9);
 }
 
@@ -89,4 +89,10 @@ body {
 .layer-5,
 .layer-6 {
   pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layers__container {
+    transform: none;
+  }
 }

@@ -3,9 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Forest</title>
+  <meta name="description" content="An immersive 3D forest scene with parallax depth effect and animated rain, built with vanilla HTML, CSS and JavaScript.">
+  <meta property="og:title" content="3D Forest Parallax">
+  <meta property="og:description" content="Immersive 3D forest scene with parallax depth effect and animated rain.">
+  <meta property="og:type" content="website">
+  <title>3D Forest Parallax</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
   <script src="js/rain.js" defer></script>
@@ -14,8 +18,8 @@
 <body>
   <div class="layers">
     <div class="layers__container">
-      <div class="layers__item layer-1" style="background-image: url(img/layer-1.jpg);"></div>
-      <div class="layers__item layer-2" style="background-image: url(img/layer-2.png);"></div>
+      <div class="layers__item layer-1"></div>
+      <div class="layers__item layer-2"></div>
       <div class="layers__item layer-3">
         <section class="hero">
           <h1 class="hero__title">Natural forest <span>HTML / CSS / JS</span></h1>
@@ -24,11 +28,10 @@
       <div class="layers__item layer-4">
         <canvas class="rain"></canvas>
       </div>
-      <div class="layers__item layer-5" style="background-image: url(img/layer-5.png);"></div>
-      <div class="layers__item layer-6" style="background-image: url(img/layer-6.png);"></div>
+      <div class="layers__item layer-5"></div>
+      <div class="layers__item layer-6"></div>
     </div>
   </div>
-
 </body>
 
 </html>
